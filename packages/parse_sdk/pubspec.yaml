@@ -1,0 +1,25 @@
+name: parse_sdk
+description: Parse server sdk
+version: 1.0.0
+publish_to: none
+
+environment:
+  sdk: ">=3.7.0 <4.0.0"
+  flutter: ">=3.29.0 <4.0.0"
+
+resolution: workspace
+
+# Add regular dependencies here.
+dependencies:
+  flutter:
+    sdk: flutter
+  parse_server_sdk: ^8.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  # mockito: 5.4.5
+  # build_runner: 2.4.15
+
+flutter:
+  uses-material-design: true

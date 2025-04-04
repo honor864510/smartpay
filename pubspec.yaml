@@ -11,6 +11,7 @@ environment:
 
 workspace:
   - packages/rest_client
+  - packages/parse_sdk
   - packages/app_database
   - packages/logger
   - packages/analytics
@@ -50,6 +51,8 @@ dependencies:
   # Packages
   rest_client:
     path: packages/rest_client
+  parse_sdk:
+    path: packages/parse_sdk
   app_database:
     path: packages/app_database
   logger:
@@ -76,6 +79,9 @@ dev_dependencies:
   flutter_launcher_icons: 0.14.3
   flutter_native_splash: 2.4.5
   build_runner: 2.4.15
+
+dependency_overrides:
+  web: ^1.1.1
 
 flutter:
   uses-material-design: true
