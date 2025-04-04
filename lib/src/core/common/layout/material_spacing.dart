@@ -18,6 +18,22 @@ class MaterialSpacer extends StatelessWidget {
   Widget build(BuildContext context) => SizedBox(width: spacing);
 }
 
+/// {@template vertical_spacer}
+/// A spacer that adds vertical space between elements in a layout.
+///
+/// Spacers measure 24dp tall by default.
+/// {@endtemplate}
+class VerticalSpacer extends StatelessWidget {
+  /// {@macro vertical_spacer}
+  const VerticalSpacer({super.key, this.spacing = 24});
+
+  /// Creates a spacer that is 24dp tall.
+  final double spacing;
+
+  @override
+  Widget build(BuildContext context) => SizedBox(height: spacing);
+}
+
 /// {@template horizontal_spacing}
 /// Spacing that is applied to element to both the left and right.
 /// {@endtemplate}
@@ -36,4 +52,24 @@ class HorizontalSpacing extends EdgeInsets {
   /// [windowWidth] is the width of a window.
   factory HorizontalSpacing.centered(double windowWidth, [double maxWidth = 768]) =>
       HorizontalSpacing._(math.max((windowWidth - maxWidth) / 2, 16));
+}
+
+/// {@template vertical_spacing}
+/// Spacing that is applied to element to both the top and bottom.
+/// {@endtemplate}
+class VerticalSpacing extends EdgeInsets {
+  const VerticalSpacing._(final double value) : super.symmetric(vertical: value);
+
+  /// Vertical spacing for WindowSize.compact
+  const VerticalSpacing.compact() : this._(16);
+
+  /// Vertical spacing for WindowSize.medium+.
+  const VerticalSpacing.mediumUp() : this._(24);
+
+  /// Spacing that is used to center
+  /// the element and keep at height of [maxHeight]
+  ///
+  /// [windowHeight] is the height of a window.
+  factory VerticalSpacing.centered(double windowHeight, [double maxHeight = 768]) =>
+      VerticalSpacing._(math.max((windowHeight - maxHeight) / 2, 16));
 }
