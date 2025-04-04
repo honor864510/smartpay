@@ -1,1 +1,3 @@
-export 'package:ui/src/components/placeholders/placeholders.dart';
+export 'cached_image.dart';
+export 'placeholders/placeholders.dart';
+export 'space.dart';

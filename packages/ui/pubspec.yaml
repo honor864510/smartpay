@@ -18,6 +18,10 @@ dependencies:
   #google_fonts:
   theme_tailor_annotation: ^3.0.2
 
+  # UI
+  octo_image: ^2.1.0
+  cached_network_image: ^3.4.1
+
 dev_dependencies:
   # Test
   flutter_test:
