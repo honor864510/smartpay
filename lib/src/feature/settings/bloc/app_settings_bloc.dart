@@ -14,7 +14,7 @@ final class AppSettingsBloc extends Bloc<AppSettingsEvent, AppSettingsState> {
        super(initialState) {
     on<AppSettingsEvent>(
       (event, emit) => switch (event) {
-        final _UpdateAppSettingsEvent e => _updateAppSettings(e, emit),
+        final _AppSettingsEvent$Update e => _updateAppSettings(e, emit),
       },
     );
   }
@@ -22,15 +22,15 @@ final class AppSettingsBloc extends Bloc<AppSettingsEvent, AppSettingsState> {
   final AppSettingsRepository _appSettingsRepository;
 
   Future<void> _updateAppSettings(
-    _UpdateAppSettingsEvent event,
+    _AppSettingsEvent$Update event,
     Emitter<AppSettingsState> emit,
   ) async {
     try {
-      emit(_LoadingAppSettingsState(appSettings: state.appSettings));
+      emit(_AppSettingsState$Loading(appSettings: state.appSettings));
       await _appSettingsRepository.setAppSettings(event.appSettings);
-      emit(_IdleAppSettingsState(appSettings: event.appSettings));
+      emit(_AppSettingsState$Idle(appSettings: event.appSettings));
     } catch (error) {
-      emit(_ErrorAppSettingsState(appSettings: event.appSettings, error: error));
+      emit(_AppSettingsState$Error(appSettings: event.appSettings, error: error));
     }
   }
 }
@@ -43,24 +43,24 @@ sealed class AppSettingsState {
   final AppSettings? appSettings;
 
   /// The app settings are idle.
-  const factory AppSettingsState.idle({AppSettings? appSettings}) = _IdleAppSettingsState;
+  const factory AppSettingsState.idle({AppSettings? appSettings}) = _AppSettingsState$Idle;
 
   /// The app settings are loading.
-  const factory AppSettingsState.loading({AppSettings? appSettings}) = _LoadingAppSettingsState;
+  const factory AppSettingsState.loading({AppSettings? appSettings}) = _AppSettingsState$Loading;
 
   /// The app settings have an error.
   const factory AppSettingsState.error({required Object error, AppSettings? appSettings}) =
-      _ErrorAppSettingsState;
+      _AppSettingsState$Error;
 }
 
-final class _IdleAppSettingsState extends AppSettingsState {
-  const _IdleAppSettingsState({super.appSettings});
+final class _AppSettingsState$Idle extends AppSettingsState {
+  const _AppSettingsState$Idle({super.appSettings});
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is _IdleAppSettingsState && other.appSettings == appSettings;
+    return other is _AppSettingsState$Idle && other.appSettings == appSettings;
   }
 
   @override
@@ -70,14 +70,14 @@ final class _IdleAppSettingsState extends AppSettingsState {
   String toString() => 'SettingsState.idle(appSettings: $appSettings)';
 }
 
-final class _LoadingAppSettingsState extends AppSettingsState {
-  const _LoadingAppSettingsState({super.appSettings});
+final class _AppSettingsState$Loading extends AppSettingsState {
+  const _AppSettingsState$Loading({super.appSettings});
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is _LoadingAppSettingsState && other.appSettings == appSettings;
+    return other is _AppSettingsState$Loading && other.appSettings == appSettings;
   }
 
   @override
@@ -87,8 +87,8 @@ final class _LoadingAppSettingsState extends AppSettingsState {
   String toString() => 'SettingsState.loading(appSettings: $appSettings)';
 }
 
-final class _ErrorAppSettingsState extends AppSettingsState {
-  const _ErrorAppSettingsState({required this.error, super.appSettings});
+final class _AppSettingsState$Error extends AppSettingsState {
+  const _AppSettingsState$Error({required this.error, super.appSettings});
 
   /// The error.
   final Object error;
@@ -97,7 +97,7 @@ final class _ErrorAppSettingsState extends AppSettingsState {
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is _ErrorAppSettingsState &&
+    return other is _AppSettingsState$Error &&
         other.appSettings == appSettings &&
         other.error == error;
   }
@@ -115,11 +115,11 @@ sealed class AppSettingsEvent {
 
   /// Update the app settings.
   const factory AppSettingsEvent.updateAppSettings({required AppSettings appSettings}) =
-      _UpdateAppSettingsEvent;
+      _AppSettingsEvent$Update;
 }
 
-final class _UpdateAppSettingsEvent extends AppSettingsEvent {
-  const _UpdateAppSettingsEvent({required this.appSettings});
+final class _AppSettingsEvent$Update extends AppSettingsEvent {
+  const _AppSettingsEvent$Update({required this.appSettings});
 
   /// The theme to update.
   final AppSettings appSettings;
