@@ -30,7 +30,10 @@ base class ParseSdkBase<T extends ParseObject> implements IParseSdkBase<T> {
       return response.results!.firstOrNull as T;
     }
 
-    throw ParseSdkException(response.error?.message ?? 'errorMessage', error: response.error);
+    Error.throwWithStackTrace(
+      ParseSdkException(response.error?.message ?? 'errorMessage', error: response.error),
+      StackTrace.current,
+    );
   }
 
   Future<List<T>> _handleListResponse(Future<ParseResponse> query) async {
@@ -40,7 +43,10 @@ base class ParseSdkBase<T extends ParseObject> implements IParseSdkBase<T> {
       return response.results!.cast<T>();
     }
 
-    throw ParseSdkException(response.error?.message ?? 'errorMessage', error: response.error);
+    Error.throwWithStackTrace(
+      ParseSdkException(response.error?.message ?? 'errorMessage', error: response.error),
+      StackTrace.current,
+    );
   }
 
   @override
@@ -96,14 +102,20 @@ base class ParseSdkBase<T extends ParseObject> implements IParseSdkBase<T> {
         return _parseObjectConstructor()..objectId = objectId;
       }
 
-      throw ParseSdkException('Failed to delete object $objectId');
+      Error.throwWithStackTrace(
+        ParseSdkException('Failed to delete object $objectId'),
+        StackTrace.current,
+      );
     } on Object catch (error, stackTrace) {
       if (error is ParseSdkException) rethrow;
 
-      throw ParseSdkException(
-        'Failed to delete object $objectId',
-        error: error,
-        stackTrace: stackTrace,
+      Error.throwWithStackTrace(
+        ParseSdkException(
+          'Failed to delete object $objectId',
+          error: error,
+          stackTrace: stackTrace,
+        ),
+        stackTrace,
       );
     }
   }
