@@ -57,6 +57,16 @@ class GeneratedLocalization {
       GeneratedLocalization,
     );
   }
+
+  /// `Что-то пошло не так`
+  String get somethingWentWrong {
+    return Intl.message(
+      'Что-то пошло не так',
+      name: 'somethingWentWrong',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate

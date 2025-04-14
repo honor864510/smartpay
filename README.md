@@ -137,8 +137,8 @@ This two-step process ensures that all dependencies are properly initialized dur
 The application uses the `flutter_intl` VSCode extension to manage localizations. To add new strings to the localization files, follow these steps:
 
 1. **Locate the ARB files**
-   - ARB files are located in the `lib/l10n` directory
-   - Each supported locale has its own file (e.g., `intl_en.arb` for English)
+   - ARB files are located in the `lilib/src/common/localization` directory
+   - Each supported locale has its own file (e.g., `intl_en.arb` for English, `intl_tk.arb` for Turkmen, `intl_ru.arb` for Russian)
 
 2. **Add a new string**
    - Open the base ARB file (usually `intl_en.arb`)
@@ -152,14 +152,19 @@ The application uses the `flutter_intl` VSCode extension to manage localizations
 
 3. **Generate Dart code**
    - Save the ARB file
-   - The flutter_intl extension will automatically generate the necessary Dart code
-   - Alternatively, you can run the generation manually:
-     - Right-click on the ARB file in VSCode
-     - Select "Flutter Intl: Initialize" or "Flutter Intl: Update"
+   - The flutter_intl extension will automatically generate the necessary Dart code (if not, head to [here](https://marketplace.visualstudio.com/items?itemName=localizely.flutter-intl))
 
 4. **Use the new string in your code**
    - Import the generated file: `import 'package:smartpay/generated/l10n.dart';`
-   - Access your string: `S.of(context).yourStringKey`
+   - For best practice, assign the localization to a variable in your build method, then use it:
+     ```dart
+     @override
+     Widget build(BuildContext context) {
+       final localization = Localization.of(context);
+
+       return Text(localization.welcomeMessage);
+     }
+     ```
 
 > **Note:** Before getting started, please install and read the documentation for the [Flutter Intl extension](https://marketplace.visualstudio.com/items?itemName=localizely.flutter-intl) to understand all available features and configuration options.
 
