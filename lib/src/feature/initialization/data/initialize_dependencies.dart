@@ -4,11 +4,11 @@ import 'package:control/control.dart';
 import 'package:l/l.dart';
 import 'package:platform_info/platform_info.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:smartpay/src/common/constant/pubspec.yaml.g.dart';
 import 'package:smartpay/src/common/controller/controller_observer.dart';
 import 'package:smartpay/src/common/model/app_metadata.dart';
 import 'package:smartpay/src/common/model/dependencies.dart';
 import 'package:smartpay/src/common/util/screen_util.dart';
-import 'package:smartpay/src/constants/pubspec.yaml.g.dart';
 import 'package:smartpay/src/feature/initialization/data/platform/platform_initialization.dart';
 
 /// Initializes the app and returns a [Dependencies] object

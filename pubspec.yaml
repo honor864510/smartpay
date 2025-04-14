@@ -54,7 +54,6 @@ dev_dependencies:
 
   # Lint
   flutter_lints: ^5.0.0
-  sizzle_lints: ^2.1.7
   
   # Utils
   flutter_gen_runner: 5.10.0
@@ -68,3 +67,11 @@ flutter:
 flutter_gen:
   output: lib/src/core/constant/generated
   line_length: 120
+
+flutter_intl:
+  enabled: true
+  class_name: GeneratedLocalization
+  main_locale: ru
+  arb_dir: lib/src/common/localization
+  output_dir: lib/src/common/localization/generated
+  use_deferred_loading: false

@@ -15,10 +15,10 @@ SmartPay is a comprehensive payment solution that allows users to manage bank ca
   - [X] Set up dependency injection
   - [ ] Implement clean architecture patterns
 
-- [ ] Localizations Support
-  - [ ] Add support for multiple locales/languages
-  - [ ] Implement localization utilities
-  - [ ] Create translation files for supported languages
+- [X] Localizations Support
+  - [X] Add support for multiple locales/languages
+  - [X] Implement localization utilities
+  - [X] Create translation files for supported languages
 
 - [ ] Theme Mode Support
   - [ ] Implement dark and light theme modes
@@ -130,3 +130,44 @@ The application uses a simple but effective dependency injection system. To add 
      ```
 
 This two-step process ensures that all dependencies are properly initialized during app startup and are available throughout the application via the `Dependencies.of(context)` method.
+
+
+### Localization
+
+The application uses the `flutter_intl` VSCode extension to manage localizations. To add new strings to the localization files, follow these steps:
+
+1. **Locate the ARB files**
+   - ARB files are located in the `lib/l10n` directory
+   - Each supported locale has its own file (e.g., `intl_en.arb` for English)
+
+2. **Add a new string**
+   - Open the base ARB file (usually `intl_en.arb`)
+   - Add a new key-value pair in the JSON format:
+     ```json
+     "yourStringKey": "Your string value",
+     "@yourStringKey": {
+       "description": "Description of how this string is used"
+     }
+     ```
+
+3. **Generate Dart code**
+   - Save the ARB file
+   - The flutter_intl extension will automatically generate the necessary Dart code
+   - Alternatively, you can run the generation manually:
+     - Right-click on the ARB file in VSCode
+     - Select "Flutter Intl: Initialize" or "Flutter Intl: Update"
+
+4. **Use the new string in your code**
+   - Import the generated file: `import 'package:smartpay/generated/l10n.dart';`
+   - Access your string: `S.of(context).yourStringKey`
+
+> **Note:** Before getting started, please install and read the documentation for the [Flutter Intl extension](https://marketplace.visualstudio.com/items?itemName=localizely.flutter-intl) to understand all available features and configuration options.
+
+Example:
+
+1. Add to `intl_en.arb`:
+   ```json
+   "welcomeMessage": "Welcome to SmartPay!",
+   "@welcomeMessage": {
+     "description": "Greeting shown on the home screen"
+   }

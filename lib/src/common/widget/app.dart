@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:smartpay/src/common/localization/localization.dart';
 import 'package:smartpay/src/common/navigator/app_navigator.dart';
 import 'package:smartpay/src/feature/home/home_screen.dart';
 import 'package:turkmen_localization_support/turkmen_localization_support.dart';
@@ -32,9 +33,9 @@ class _AppState extends State<App> {
       GlobalWidgetsLocalizations.delegate,
       GlobalCupertinoLocalizations.delegate,
       ...TkDelegates.delegates,
-      // Localization.delegate,
+      Localization.delegate,
     ],
-    // supportedLocales: Localization.supportedLocales,
+    supportedLocales: Localization.supportedLocales,
 
     /* locale: SettingsScope.localOf(context), */
     builder:
