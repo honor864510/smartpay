@@ -21,7 +21,7 @@ SmartPay is a comprehensive payment solution that allows users to manage bank ca
   - [X] Create translation files for supported languages
 
 - [ ] Theme Mode Support
-  - [ ] Implement dark and light theme modes
+  - [X] Implement dark and light theme modes
   - [ ] Create theme controllers and providers
   - [ ] Add user preference for theme selection
 

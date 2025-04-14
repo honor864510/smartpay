@@ -10,11 +10,11 @@ import 'package:smartpay/src/common/model/app_metadata.dart';
 import 'package:smartpay/src/common/model/dependencies.dart';
 import 'package:smartpay/src/common/util/screen_util.dart';
 import 'package:smartpay/src/feature/initialization/data/platform/platform_initialization.dart';
+import 'package:smartpay/src/feature/settings/controller/settings_controller.dart';
+import 'package:smartpay/src/feature/settings/repository/settings_repository.dart';
 
 /// Initializes the app and returns a [Dependencies] object
-Future<Dependencies> $initializeDependencies({
-  void Function(int progress, String message)? onProgress,
-}) async {
+Future<Dependencies> $initializeDependencies({void Function(int progress, String message)? onProgress}) async {
   final dependencies = Dependencies();
   final totalSteps = _initializationSteps.length;
   var currentStep = 0;
@@ -47,9 +47,7 @@ final Map<String, _InitializationStep> _initializationSteps = <String, _Initiali
             appVersionMinor: Pubspec.version.minor,
             appVersionPatch: Pubspec.version.patch,
             appBuildTimestamp:
-                Pubspec.version.build.isNotEmpty
-                    ? (int.tryParse(Pubspec.version.build.firstOrNull ?? '-1') ?? -1)
-                    : -1,
+                Pubspec.version.build.isNotEmpty ? (int.tryParse(Pubspec.version.build.firstOrNull ?? '-1') ?? -1) : -1,
             operatingSystem: platform.operatingSystem.name,
             processorsCount: platform.numberOfProcessors,
             appLaunchedTimestamp: DateTime.now(),
@@ -61,10 +59,17 @@ final Map<String, _InitializationStep> _initializationSteps = <String, _Initiali
   'Initializing analytics': (_) {},
   'Log app open': (_) {},
   'Get remote config': (_) {},
-  'Restore settings': (_) {},
   'Initialize shared preferences':
+      (dependencies) async => dependencies.sharedPreferences = await SharedPreferences.getInstance(),
+  'Init repository':
+      (dependencies) =>
+          dependencies.settingsRepository = SettingsRepository(preferences: dependencies.sharedPreferences),
+  'Initialize settings':
       (dependencies) async =>
-          dependencies.sharedPreferences = await SharedPreferences.getInstance(),
+          dependencies.settingsController = SettingsController(
+            repository: dependencies.settingsRepository,
+            initialState: await dependencies.settingsRepository.read(),
+          ),
   'Connect to database': (_) {},
   'Shrink database': (_) {},
   'Migrate app from previous version': (_) {},
