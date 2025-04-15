@@ -10,20 +10,20 @@ SmartPay is a comprehensive payment solution that allows users to manage bank ca
 
 ### Core Infrastructure
 
-- [ ] Create project structure
-  - [ ] Organize code into feature-based modules
+- [X] Create project structure
+  - [X] Organize code into feature-based modules
   - [X] Set up dependency injection
-  - [ ] Implement clean architecture patterns
+  - [X] Implement clean architecture patterns
 
 - [X] Localizations Support
   - [X] Add support for multiple locales/languages
   - [X] Implement localization utilities
   - [X] Create translation files for supported languages
 
-- [ ] Theme Mode Support
+- [X] Theme Mode Support
   - [X] Implement dark and light theme modes
-  - [ ] Create theme controllers and providers
-  - [ ] Add user preference for theme selection
+  - [X] Create theme controllers and providers
+  - [X] Add user preference for theme selection
 
 ### Data Management
 
