@@ -1,13 +1,11 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:smartpay/src/feature/home/home_screen.dart';
-import 'package:smartpay/src/feature/settings/settings_screen.dart';
+import 'package:smartpay/src/feature/home/widget/home_screen.dart';
 
 /// Just for example, as one of possible ways to
 /// represent the pages/routes in the app.
 enum Routes {
-  home,
-  settings;
+  home;
 
   const Routes();
 
@@ -22,7 +20,6 @@ enum Routes {
     },
     child: switch (this) {
       Routes.home => const HomeScreen(),
-      Routes.settings => const SettingsScreen(),
     },
   );
 }

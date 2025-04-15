@@ -3,7 +3,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:smartpay/src/common/localization/localization.dart';
 import 'package:smartpay/src/common/model/dependencies.dart';
 import 'package:smartpay/src/common/navigator/app_navigator.dart';
-import 'package:smartpay/src/feature/home/home_screen.dart';
+import 'package:smartpay/src/feature/home/widget/home_screen.dart';
 import 'package:smartpay/src/feature/settings/controller/settings_controller.dart';
 import 'package:smartpay/src/feature/settings/entity/settings_entity.dart';
 import 'package:turkmen_localization_support/turkmen_localization_support.dart';
@@ -24,9 +24,10 @@ class _AppState extends State<App> {
   final GlobalKey<State<StatefulWidget>> _preserveKey = GlobalKey<State<StatefulWidget>>();
 
   @override
-  Widget build(BuildContext context) => StateConsumer<SettingsController, SettingsEntity>(
+  Widget build(BuildContext context) => StateConsumer<SettingsController, SettingsState>(
+    buildWhen: (previous, current) => previous.settings != current.settings || previous.idle != current.idle,
     controller: Dependencies.of(context).settingsController,
-    child: _App(preserveKey: _preserveKey, settingsEntity: Dependencies.of(context).settingsController.state),
+    builder: (context, state, child) => _App(preserveKey: _preserveKey, settingsEntity: state.settings),
   );
 }
 
