@@ -1,11 +1,11 @@
 import 'package:flutter/widgets.dart';
 
-/// {@template settings_screen}
-/// SettingsScreen widget.
+/// {@template bank_card_screen}
+/// BankCardsScreen widget.
 /// {@endtemplate}
-class SettingsScreen extends StatelessWidget {
-  /// {@macro settings_screen}
-  const SettingsScreen({
+class BankCardsScreen extends StatelessWidget {
+  /// {@macro bank_card_screen}
+  const BankCardsScreen({
     super.key, // ignore: unused_element
   });
 

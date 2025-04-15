@@ -68,7 +68,7 @@ final Map<String, _InitializationStep> _initializationSteps = <String, _Initiali
       (dependencies) async =>
           dependencies.settingsController = SettingsController(
             repository: dependencies.settingsRepository,
-            initialState: await dependencies.settingsRepository.read(),
+            initialState: (settings: await dependencies.settingsRepository.read(), idle: true),
           ),
   'Connect to database': (_) {},
   'Shrink database': (_) {},
