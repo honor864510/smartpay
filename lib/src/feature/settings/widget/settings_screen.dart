@@ -1,4 +1,5 @@
 import 'package:smartpay/src/common/model/dependencies.dart';
+import 'package:smartpay/src/common/util/extension/extension.dart';
 import 'package:ui/ui.dart';
 
 /// {@template settings_screen}
@@ -18,16 +19,7 @@ class SettingsScreen extends StatelessWidget {
         SliverList.list(
           children: [
             ListTile(title: Text('Set biometry security')),
-            ListTile(
-              title: Text('Theme mode'),
-              trailing: Switch(
-                value: Dependencies.of(context).settingsController.state.settings.themeMode == ThemeMode.dark,
-                onChanged:
-                    (value) => Dependencies.of(
-                      context,
-                    ).settingsController.setThemeMode(value ? ThemeMode.dark : ThemeMode.light),
-              ),
-            ),
+            _ThemeModeSelector(),
             ListTile(title: Text('Language')),
             ListTile(title: Text('About app')),
           ],
@@ -35,4 +27,33 @@ class SettingsScreen extends StatelessWidget {
       ],
     ),
   );
+}
+
+class _ThemeModeSelector extends StatelessWidget {
+  void _onToggleThemeMode(BuildContext context) {
+    final settingsController = Dependencies.of(context).settingsController;
+    final newThemeMode = context.colorScheme.brightness == Brightness.dark ? ThemeMode.dark : ThemeMode.light;
+    settingsController.setThemeMode(newThemeMode);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final settingsController = Dependencies.of(context).settingsController;
+
+    return ListenableBuilder(
+      listenable: settingsController.select((state) => state.settings.themeMode),
+      builder: (context, child) {
+        final themeMode = settingsController.select((state) => state.settings.themeMode);
+
+        return ListTile(
+          title: const Text('Theme mode'),
+          onTap: () => _onToggleThemeMode(context),
+          trailing: Switch(
+            value: themeMode.value == ThemeMode.light,
+            onChanged: (value) => _onToggleThemeMode(context),
+          ),
+        );
+      },
+    );
+  }
 }
