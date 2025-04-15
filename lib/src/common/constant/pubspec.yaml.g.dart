@@ -126,12 +126,12 @@ sealed class Pubspec {
   static final DateTime timestamp = DateTime.utc(
     2025,
     4,
-    14,
-    6,
-    47,
-    27,
-    233,
-    381,
+    15,
+    12,
+    44,
+    55,
+    967,
+    859,
   );
 
   /// Name
@@ -416,24 +416,24 @@ sealed class Pubspec {
     'flutter_localizations': <String, Object>{
       'sdk': r'flutter',
     },
-    'intl': r'0.19.0',
+    'intl': r'^0.19.0',
     'turkmen_localization_support': r'^0.0.11',
     'cupertino_icons': r'^1.0.8',
-    'collection': r'1.19.1',
-    'async': r'2.12.0',
-    'meta': r'1.16.0',
+    'collection': r'^1.19.1',
+    'async': r'^2.12.0',
+    'meta': r'^1.16.0',
     'shared_preferences': r'^2.5.3',
     'control': r'^0.2.0',
     'l': r'^5.0.0',
-    'stack_trace': r'1.12.1',
+    'stack_trace': r'^1.12.1',
     'ui': <String, Object>{
       'path': r'package/ui',
     },
     'web': r'^1.1.1',
-    'path': r'1.9.1',
+    'path': r'^1.9.1',
     'win32': r'^5.12.0',
     'platform_info': r'^5.0.0',
-    'path_provider': r'2.1.5',
+    'path_provider': r'^2.1.5',
     'window_manager': r'^0.4.3',
   };
 
@@ -443,9 +443,10 @@ sealed class Pubspec {
       'sdk': r'flutter',
     },
     'flutter_lints': r'^5.0.0',
-    'flutter_gen_runner': r'5.10.0',
+    'flutter_gen_runner': r'^5.10.0',
     'pubspec_generator': r'^4.2.2',
-    'build_runner': r'2.4.15',
+    'intl_utils': r'^2.8.10',
+    'build_runner': r'^2.4.15',
   };
 
   /// Dependency overrides
@@ -514,7 +515,7 @@ sealed class Pubspec {
     'flutter_intl': <String, Object>{
       'enabled': true,
       'class_name': r'GeneratedLocalization',
-      'main_locale': r'en',
+      'main_locale': r'ru',
       'arb_dir': r'lib/src/common/localization',
       'output_dir': r'lib/src/common/localization/generated',
       'use_deferred_loading': false,
