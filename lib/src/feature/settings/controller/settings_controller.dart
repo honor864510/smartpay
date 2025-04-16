@@ -29,4 +29,11 @@ final class SettingsController extends StateController<SettingsState> with Dropp
     await _repository.write(newSettings);
     setState((settings: state.settings, idle: true));
   });
+
+  void setBiometricalSecurity({required bool value}) => handle(() async {
+    final newSettings = state.settings.copyWith(enableBiometricalSecurity: value);
+    setState((settings: newSettings, idle: false));
+    await _repository.write(newSettings);
+    setState((settings: state.settings, idle: true));
+  });
 }

@@ -67,6 +67,36 @@ class GeneratedLocalization {
       args: [],
     );
   }
+
+  /// `Настройки`
+  String get settings {
+    return Intl.message('Настройки', name: 'settings', desc: '', args: []);
+  }
+
+  /// `Биометрическая безопасность`
+  String get biometricalSecurity {
+    return Intl.message(
+      'Биометрическая безопасность',
+      name: 'biometricalSecurity',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Тема`
+  String get themeMode {
+    return Intl.message('Тема', name: 'themeMode', desc: '', args: []);
+  }
+
+  /// `Язык`
+  String get language {
+    return Intl.message('Язык', name: 'language', desc: '', args: []);
+  }
+
+  /// `О приложении`
+  String get aboutApp {
+    return Intl.message('О приложении', name: 'aboutApp', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate

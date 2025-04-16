@@ -206,7 +206,7 @@ const Map<String, (String name, String nativeName)> _isoLangs = <String, (String
   'th': ('Thai', 'ไทย'),
   'ti': ('Tigrinya', 'ትግርኛ'),
   'bo': ('Tibetan', 'བོད་ཡིག'),
-  'tk': ('Turkmen', 'Türkmen, Түркмен'),
+  'tk': ('Turkmen', 'Türkmen'),
   'tn': ('Tswana', 'Setswana'),
   'to': ('Tonga (Tonga Islands)', 'faka Tonga'),
   'tr': ('Turkish', 'Türkçe'),

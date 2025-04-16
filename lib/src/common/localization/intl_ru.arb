@@ -1,4 +1,9 @@
 {
   "@@locale": "ru",
-  "somethingWentWrong": "Что-то пошло не так"
+  "somethingWentWrong": "Что-то пошло не так",
+  "settings": "Настройки",
+  "biometricalSecurity": "Биометрическая безопасность",
+  "themeMode": "Тема",
+  "language": "Язык",
+  "aboutApp": "О приложении"
 }

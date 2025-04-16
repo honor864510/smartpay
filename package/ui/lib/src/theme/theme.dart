@@ -12,9 +12,13 @@ extension type AppThemeData._(ThemeData data) implements ThemeData {
 }
 
 /// Light theme data for the App.
-final ThemeData _appLightTheme = ThemeData.light().copyWith();
+final ThemeData _appLightTheme = ThemeData.light().copyWith(
+  colorScheme: ColorScheme.fromSeed(brightness: Brightness.light, seedColor: Colors.blue),
+);
 
 // --- Dark Theme --- //
 
 /// Dark theme data for the App.
-final ThemeData _appDarkTheme = ThemeData.dark().copyWith();
+final ThemeData _appDarkTheme = ThemeData.dark().copyWith(
+  colorScheme: ColorScheme.fromSeed(brightness: Brightness.dark, seedColor: Colors.blue),
+);

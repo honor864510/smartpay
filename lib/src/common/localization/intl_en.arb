@@ -1,4 +1,9 @@
 {
   "@@locale": "en",
-  "somethingWentWrong": "Something went wrong"
+  "somethingWentWrong": "Something went wrong",
+  "settings": "Settings",
+  "biometricalSecurity": "Biometrical security",
+  "themeMode": "Theme mode",
+  "language": "Language",
+  "aboutApp": "About app"
 }
