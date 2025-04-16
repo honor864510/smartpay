@@ -1,6 +1,6 @@
 name: smartpay
 description: "A new Flutter project."
-publish_to: 'none'
+publish_to: "none"
 version: 0.1.0
 
 environment:
@@ -17,14 +17,14 @@ dependencies:
   # Localization
   flutter_localizations:
     sdk: flutter
-  intl: 0.19.0
+  intl: ^0.19.0
   turkmen_localization_support: ^0.0.11
 
   # UI
   cupertino_icons: ^1.0.8
-  collection: 1.19.1
-  async: 2.12.0
-  meta: 1.16.0
+  collection: ^1.19.1
+  async: ^2.12.0
+  meta: ^1.16.0
 
   # Storing data
   shared_preferences: ^2.5.3
@@ -34,18 +34,18 @@ dependencies:
 
   # Logging
   l: ^5.0.0
-  stack_trace: 1.12.1
-  
+  stack_trace: ^1.12.1
+
   # Packages
   ui:
     path: package/ui
-  
+
   # Utils
   web: ^1.1.1
-  path: 1.9.1
+  path: ^1.9.1
   win32: ^5.12.0
   platform_info: ^5.0.0
-  path_provider: 2.1.5
+  path_provider: ^2.1.5
   window_manager: ^0.4.3
 
 dev_dependencies:
@@ -54,11 +54,12 @@ dev_dependencies:
 
   # Lint
   flutter_lints: ^5.0.0
-  
+
   # Utils
-  flutter_gen_runner: 5.10.0
+  flutter_gen_runner: ^5.10.0
   pubspec_generator: ^4.2.2
-  build_runner: 2.4.15
+  intl_utils: ^2.8.10
+  build_runner: ^2.4.15
 
 flutter:
   uses-material-design: true
