@@ -42,7 +42,7 @@ class _AboutApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = Localization.of(context);
 
-    return ListTile(title: Text(l10n.aboutApp));
+    return ListTile(title: Text(l10n.aboutApp), leading: const Icon(CupertinoIcons.info_circle));
   }
 }
 
@@ -61,13 +61,14 @@ class _BiometricalSecurity extends StatelessWidget {
     final settingsController = Dependencies.of(context).settingsController;
 
     return ListenableBuilder(
-      listenable: settingsController,
+      listenable: settingsController.select((state) => state.settings.enableBiometricalSecurity),
       builder: (context, _) {
         final isBiometricalSecurityEnabled =
             settingsController.select((state) => state.settings.enableBiometricalSecurity).value;
 
         return ListTile(
           title: Text(l10n.biometricalSecurity),
+          leading: const Icon(Icons.fingerprint),
           onTap: () => _onToggleSecurity(context),
           trailing: Switch(value: isBiometricalSecurityEnabled, onChanged: (value) => _onToggleSecurity(context)),
         );
@@ -95,6 +96,7 @@ class _ThemeModeSelector extends StatelessWidget {
 
         return ListTile(
           title: Text(l10n.themeMode),
+          leading: const Icon(Icons.dark_mode_outlined),
           onTap: () => _onToggleThemeMode(context),
           trailing: Switch(
             value: themeMode.value == ThemeMode.light,
@@ -116,6 +118,7 @@ class _LocaleSelector extends StatelessWidget {
 
     return ListTile(
       title: Text(l10n.language),
+      leading: const Icon(Icons.language_outlined),
       trailing: ListenableBuilder(
         listenable: settingsController,
         builder:
