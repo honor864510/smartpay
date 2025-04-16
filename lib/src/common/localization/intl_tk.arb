@@ -1,9 +1,17 @@
 {
   "@@locale": "tk",
   "somethingWentWrong": "Ýalňyşlyk ýüze çykdy",
+  "@ ######## Settings ########": {},
   "settings": "Sazlamalar",
   "biometricalSecurity": "Biometriki gorag",
   "themeMode": "Tema",
   "language": "Dil",
-  "aboutApp": "Barada"
+  "aboutApp": "Barada",
+  "@ ######## Bank Cards ########": {},
+  "myCards": "Meniň kartarym",
+  "addCard": "Kart goş",
+  "selectBank": "Banky saýla",
+  "cardNumber": "Kartyň belgisi",
+  "cardHolderName": "Kartyň ýüzündäki ady/familiýasy",
+  "expiryDate": "Kartyň möhleti"
 }

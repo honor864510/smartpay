@@ -23,10 +23,18 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "aboutApp": MessageLookupByLibrary.simpleMessage("О приложении"),
+    "addCard": MessageLookupByLibrary.simpleMessage("Добавить карту"),
     "biometricalSecurity": MessageLookupByLibrary.simpleMessage(
       "Биометрическая безопасность",
     ),
+    "cardHolderName": MessageLookupByLibrary.simpleMessage(
+      "Имя/Фамилия на карте",
+    ),
+    "cardNumber": MessageLookupByLibrary.simpleMessage("Номер карты"),
+    "expiryDate": MessageLookupByLibrary.simpleMessage("Срок действия"),
     "language": MessageLookupByLibrary.simpleMessage("Язык"),
+    "myCards": MessageLookupByLibrary.simpleMessage("Мои карты"),
+    "selectBank": MessageLookupByLibrary.simpleMessage("Выберите банк"),
     "settings": MessageLookupByLibrary.simpleMessage("Настройки"),
     "somethingWentWrong": MessageLookupByLibrary.simpleMessage(
       "Что-то пошло не так",

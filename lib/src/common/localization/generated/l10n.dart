@@ -97,6 +97,51 @@ class GeneratedLocalization {
   String get aboutApp {
     return Intl.message('О приложении', name: 'aboutApp', desc: '', args: []);
   }
+
+  /// `Мои карты`
+  String get myCards {
+    return Intl.message('Мои карты', name: 'myCards', desc: '', args: []);
+  }
+
+  /// `Добавить карту`
+  String get addCard {
+    return Intl.message('Добавить карту', name: 'addCard', desc: '', args: []);
+  }
+
+  /// `Выберите банк`
+  String get selectBank {
+    return Intl.message(
+      'Выберите банк',
+      name: 'selectBank',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Номер карты`
+  String get cardNumber {
+    return Intl.message('Номер карты', name: 'cardNumber', desc: '', args: []);
+  }
+
+  /// `Имя/Фамилия на карте`
+  String get cardHolderName {
+    return Intl.message(
+      'Имя/Фамилия на карте',
+      name: 'cardHolderName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Срок действия`
+  String get expiryDate {
+    return Intl.message(
+      'Срок действия',
+      name: 'expiryDate',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate

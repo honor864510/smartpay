@@ -1,9 +1,17 @@
 {
   "@@locale": "ru",
   "somethingWentWrong": "Что-то пошло не так",
+  "@ ######## Settings ########": {},
   "settings": "Настройки",
   "biometricalSecurity": "Биометрическая безопасность",
   "themeMode": "Тема",
   "language": "Язык",
-  "aboutApp": "О приложении"
+  "aboutApp": "О приложении",
+  "@ ######## Bank Cards ########": {},
+  "myCards": "Мои карты",
+  "addCard": "Добавить карту",
+  "selectBank": "Выберите банк",
+  "cardNumber": "Номер карты",
+  "cardHolderName": "Имя/Фамилия на карте",
+  "expiryDate": "Срок действия"
 }

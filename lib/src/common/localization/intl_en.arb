@@ -1,9 +1,17 @@
 {
   "@@locale": "en",
   "somethingWentWrong": "Something went wrong",
+  "@ ######## Settings ########": {},
   "settings": "Settings",
   "biometricalSecurity": "Biometrical security",
   "themeMode": "Theme mode",
   "language": "Language",
-  "aboutApp": "About app"
+  "aboutApp": "About app",
+  "@ ######## Bank Cards ########": {},
+  "myCards": "My cards",
+  "addCard": "Add card",
+  "selectBank": "Select bank",
+  "cardNumber": "Card number",
+  "cardHolderName": "Cardholder name",
+  "expiryDate": "Expiry date"
 }
