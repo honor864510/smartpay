@@ -142,6 +142,26 @@ class GeneratedLocalization {
       args: [],
     );
   }
+
+  /// `Пожалуйста заполните все данные`
+  String get fillInAllData {
+    return Intl.message(
+      'Пожалуйста заполните все данные',
+      name: 'fillInAllData',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Вы пока не добавили ни одной карты`
+  String get noCards {
+    return Intl.message(
+      'Вы пока не добавили ни одной карты',
+      name: 'noCards',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate

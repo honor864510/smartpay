@@ -27,11 +27,19 @@ class MessageLookup extends MessageLookupByLibrary {
     "biometricalSecurity": MessageLookupByLibrary.simpleMessage(
       "Biometrical security",
     ),
-    "cardHolderName": MessageLookupByLibrary.simpleMessage("Cardholder name"),
+    "cardHolderName": MessageLookupByLibrary.simpleMessage(
+      "Cardholder name/surname",
+    ),
     "cardNumber": MessageLookupByLibrary.simpleMessage("Card number"),
     "expiryDate": MessageLookupByLibrary.simpleMessage("Expiry date"),
+    "fillInAllData": MessageLookupByLibrary.simpleMessage(
+      "Please fill all fields",
+    ),
     "language": MessageLookupByLibrary.simpleMessage("Language"),
     "myCards": MessageLookupByLibrary.simpleMessage("My cards"),
+    "noCards": MessageLookupByLibrary.simpleMessage(
+      "You haven\'t yet added any card",
+    ),
     "selectBank": MessageLookupByLibrary.simpleMessage("Select bank"),
     "settings": MessageLookupByLibrary.simpleMessage("Settings"),
     "somethingWentWrong": MessageLookupByLibrary.simpleMessage(

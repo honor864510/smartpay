@@ -32,8 +32,14 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "cardNumber": MessageLookupByLibrary.simpleMessage("Kartyň belgisi"),
     "expiryDate": MessageLookupByLibrary.simpleMessage("Kartyň möhleti"),
+    "fillInAllData": MessageLookupByLibrary.simpleMessage(
+      "Ähli maglumatlary giriziň",
+    ),
     "language": MessageLookupByLibrary.simpleMessage("Dil"),
     "myCards": MessageLookupByLibrary.simpleMessage("Meniň kartarym"),
+    "noCards": MessageLookupByLibrary.simpleMessage(
+      "Siz entäk bank kartyňyzy girizmediňiz",
+    ),
     "selectBank": MessageLookupByLibrary.simpleMessage("Banky saýla"),
     "settings": MessageLookupByLibrary.simpleMessage("Sazlamalar"),
     "somethingWentWrong": MessageLookupByLibrary.simpleMessage(

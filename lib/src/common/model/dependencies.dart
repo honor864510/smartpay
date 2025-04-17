@@ -1,6 +1,10 @@
 import 'package:flutter/widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smartpay/src/common/model/app_metadata.dart';
+import 'package:smartpay/src/feature/bank_card/controller/bank_card_controller.dart';
+import 'package:smartpay/src/feature/bank_card/controller/bank_list_controller.dart';
+import 'package:smartpay/src/feature/bank_card/repository/bank_card_repository.dart';
+import 'package:smartpay/src/feature/bank_card/repository/bank_repository.dart';
 import 'package:smartpay/src/feature/settings/controller/settings_controller.dart';
 import 'package:smartpay/src/feature/settings/repository/settings_repository.dart';
 
@@ -32,7 +36,19 @@ class Dependencies {
   /// Settings repository
   late final SettingsRepository settingsRepository;
 
+  /// Bank card repository
+  late final BankCardRepository bankCardRepository;
+
+  /// Banks List repository
+  late final MockBankRepository bankRepository;
+
   /// Controllers
+
+  /// Bank card controller
+  late final BankCardController bankCardController;
+
+  /// Bank list controller
+  late final BankListController bankListController;
 
   /// Settings controller
   late final SettingsController settingsController;

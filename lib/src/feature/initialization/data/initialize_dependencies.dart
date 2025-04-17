@@ -9,6 +9,10 @@ import 'package:smartpay/src/common/controller/controller_observer.dart';
 import 'package:smartpay/src/common/model/app_metadata.dart';
 import 'package:smartpay/src/common/model/dependencies.dart';
 import 'package:smartpay/src/common/util/screen_util.dart';
+import 'package:smartpay/src/feature/bank_card/controller/bank_card_controller.dart';
+import 'package:smartpay/src/feature/bank_card/controller/bank_list_controller.dart';
+import 'package:smartpay/src/feature/bank_card/repository/bank_card_repository.dart';
+import 'package:smartpay/src/feature/bank_card/repository/bank_repository.dart';
 import 'package:smartpay/src/feature/initialization/data/platform/platform_initialization.dart';
 import 'package:smartpay/src/feature/settings/controller/settings_controller.dart';
 import 'package:smartpay/src/feature/settings/repository/settings_repository.dart';
@@ -63,13 +67,21 @@ final Map<String, _InitializationStep> _initializationSteps = <String, _Initiali
       (dependencies) async => dependencies.sharedPreferences = await SharedPreferences.getInstance(),
   'Init repository':
       (dependencies) =>
-          dependencies.settingsRepository = SettingsRepository(preferences: dependencies.sharedPreferences),
+          dependencies
+            ..settingsRepository = SettingsRepository(preferences: dependencies.sharedPreferences)
+            ..bankRepository = MockBankRepository()
+            ..bankCardRepository = BankCardRepository(prefs: dependencies.sharedPreferences),
   'Initialize settings':
       (dependencies) async =>
           dependencies.settingsController = SettingsController(
             repository: dependencies.settingsRepository,
             initialState: (settings: await dependencies.settingsRepository.read(), idle: true),
           ),
+  'Initialize controllers':
+      (dependencies) =>
+          dependencies
+            ..bankCardController = BankCardController(repository: dependencies.bankCardRepository)
+            ..bankListController = BankListController(repository: dependencies.bankRepository),
   'Connect to database': (_) {},
   'Shrink database': (_) {},
   'Migrate app from previous version': (_) {},

@@ -12,6 +12,8 @@
   "addCard": "Add card",
   "selectBank": "Select bank",
   "cardNumber": "Card number",
-  "cardHolderName": "Cardholder name",
-  "expiryDate": "Expiry date"
+  "cardHolderName": "Cardholder name/surname",
+  "expiryDate": "Expiry date",
+  "fillInAllData": "Please fill all fields",
+  "noCards": "You haven't yet added any card"
 }

@@ -13,5 +13,7 @@
   "selectBank": "Banky saýla",
   "cardNumber": "Kartyň belgisi",
   "cardHolderName": "Kartyň ýüzündäki ady/familiýasy",
-  "expiryDate": "Kartyň möhleti"
+  "expiryDate": "Kartyň möhleti",
+  "fillInAllData": "Ähli maglumatlary giriziň",
+  "noCards": "Siz entäk bank kartyňyzy girizmediňiz"
 }

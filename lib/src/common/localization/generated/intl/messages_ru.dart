@@ -32,8 +32,14 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "cardNumber": MessageLookupByLibrary.simpleMessage("Номер карты"),
     "expiryDate": MessageLookupByLibrary.simpleMessage("Срок действия"),
+    "fillInAllData": MessageLookupByLibrary.simpleMessage(
+      "Пожалуйста заполните все данные",
+    ),
     "language": MessageLookupByLibrary.simpleMessage("Язык"),
     "myCards": MessageLookupByLibrary.simpleMessage("Мои карты"),
+    "noCards": MessageLookupByLibrary.simpleMessage(
+      "Вы пока не добавили ни одной карты",
+    ),
     "selectBank": MessageLookupByLibrary.simpleMessage("Выберите банк"),
     "settings": MessageLookupByLibrary.simpleMessage("Настройки"),
     "somethingWentWrong": MessageLookupByLibrary.simpleMessage(
