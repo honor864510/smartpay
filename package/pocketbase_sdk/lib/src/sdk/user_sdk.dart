@@ -7,8 +7,14 @@ final class UserSdk {
 
   final PocketBase pb;
 
-  Future<UserDto> signIn({required String email, required String password}) async {
-    final response = await pb.collection('users').authWithPassword(email, password);
+  Future<OTPResponse> requestOtp({required String email}) async {
+    final response = await pb.collection('users').requestOTP(email);
+
+    return response;
+  }
+
+  Future<UserDto> confirmOtp({required String otpId, required String code}) async {
+    final response = await pb.collection('users').authWithOTP(otpId, code);
 
     return UserDto.fromJson(response.record.data);
   }

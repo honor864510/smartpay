@@ -15,7 +15,8 @@ dependencies:
     sdk: flutter
   
   meta: ^1.16.0
-  pocketbase: ^0.22.0
+  pocketbase: ^0.22.0  
+  shared_preferences: ^2.5.3
 
 dev_dependencies:
   # Test
