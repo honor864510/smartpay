@@ -1,5 +1,5 @@
-name: ui
-description: Shared UI Components, Widgets, Fonts, Colors and Theme
+name: pocketbase_sdk
+description: PocketBase SDK for Flutter
 publish_to: "none"
 version: 1.0.0
 
@@ -13,11 +13,9 @@ resolution: workspace
 dependencies:
   flutter:
     sdk: flutter
-  intl: ^0.19.0
-  cached_network_image: ^3.4.1
-  collection: ^1.19.1
-  #google_fonts:
-  octo_image: ^2.1.0
+  
+  meta: ^1.16.0
+  pocketbase: ^0.22.0
 
 dev_dependencies:
   # Test

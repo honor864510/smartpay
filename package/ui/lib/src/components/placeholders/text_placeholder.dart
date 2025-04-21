@@ -8,12 +8,7 @@ import 'package:ui/src/components/placeholders/shimmer.dart';
 /// {@endtemplate}
 class TextPlaceholder extends StatelessWidget {
   /// {@macro text_placeholder}
-  const TextPlaceholder({
-    this.width = double.infinity,
-    this.height = 28,
-    this.padding = const EdgeInsets.symmetric(horizontal: 16),
-    super.key,
-  });
+  const TextPlaceholder({this.width = double.infinity, this.height = 28, this.padding = EdgeInsets.zero, super.key});
 
   /// Size of the placeholder
   final double width;
@@ -28,8 +23,7 @@ class TextPlaceholder extends StatelessWidget {
           (context, constraints) => Shimmer(
             alignment: Alignment.centerLeft,
             size: Size(math.min(width, constraints.maxWidth), height),
-            color: Colors.grey[400],
-            backgroundColor: Colors.grey[100],
+            cornerRadius: 12,
           ),
     ),
   );

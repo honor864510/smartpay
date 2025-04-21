@@ -17,10 +17,10 @@ class Shimmer extends StatefulWidget {
   const Shimmer({
     this.color,
     this.backgroundColor,
-    this.speed = 15 / 8000000,
-    this.stripeWidth = .2,
-    this.size = const Size(128, 28),
-    this.cornerRadius = 8,
+    this.speed = 33 / 8000000,
+    this.stripeWidth = .4,
+    this.size = Size.infinite,
+    this.cornerRadius = 20,
     this.initialSeed = .0,
     this.alignment = Alignment.center,
     super.key,
@@ -71,9 +71,7 @@ class Shimmer extends StatefulWidget {
   State<Shimmer> createState() => _ShimmerState();
 }
 
-final class _ShimmerShaderLoader
-    with ChangeNotifier
-    implements ValueListenable<ui.FragmentShader?> {
+final class _ShimmerShaderLoader with ChangeNotifier implements ValueListenable<ui.FragmentShader?> {
   _ShimmerShaderLoader() {
     _loadShader().ignore();
   }
@@ -89,9 +87,7 @@ final class _ShimmerShaderLoader
   Future<void> _loadShader() async {
     _inProgress = true;
     try {
-      final program = await ui.FragmentProgram.fromAsset(
-        Shimmer._shaderAsset,
-      ).timeout(const Duration(seconds: 5));
+      final program = await ui.FragmentProgram.fromAsset(Shimmer._shaderAsset).timeout(const Duration(seconds: 5));
       final shader = program.fragmentShader();
       _shader = shader;
     } on Object catch (error, stackTrace) {
@@ -99,12 +95,7 @@ final class _ShimmerShaderLoader
       if (error is UnsupportedError) {
         return; // Thats fine for HTML Renderer and unsupported platforms.
       }
-      developer.log(
-        'Failed to load shader: $error',
-        error: error,
-        stackTrace: stackTrace,
-        name: 'Shimmer',
-      );
+      developer.log('Failed to load shader: $error', error: error, stackTrace: stackTrace, name: 'Shimmer');
     }
     _inProgress = false;
     notifyListeners();
@@ -204,14 +195,7 @@ class _ShimmerPainter extends CustomPainter {
     required this.widgetListenable,
     required this.themeListenable,
     required this.shaderListenable,
-  }) : super(
-         repaint: Listenable.merge([
-           elapsedListenable,
-           widgetListenable,
-           themeListenable,
-           shaderListenable,
-         ]),
-       );
+  }) : super(repaint: Listenable.merge([elapsedListenable, widgetListenable, themeListenable, shaderListenable]));
 
   final ValueListenable<Duration> elapsedListenable;
   final ValueListenable<Shimmer> widgetListenable;
@@ -228,7 +212,7 @@ class _ShimmerPainter extends CustomPainter {
     final rect = Offset.zero & size;
     final paint = Paint();
     if (shader case final ui.FragmentShader shader) {
-      final color = widget.color ?? theme.colorScheme.primary;
+      final color = widget.color ?? theme.colorScheme.primary.withValues(alpha: 0.7);
       final seed = widget.initialSeed + elapsed.inMicroseconds * widget.speed;
       final backgroundColor = widget.backgroundColor ?? theme.colorScheme.surface;
       paint.shader =

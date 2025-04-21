@@ -20,6 +20,7 @@ class Toast extends InheritedWidget {
     Duration duration = const Duration(seconds: 3),
     ToastAnimationType animationType = ToastAnimationType.fade,
     Curve curve = Curves.easeInOut,
+    double bottomMargin = 32,
   }) {
     late final OverlayEntry overlayEntry;
 
@@ -56,7 +57,17 @@ class Toast extends InheritedWidget {
     }
 
     overlayEntry = OverlayEntry(
-      builder: (context) => Positioned(left: 16, right: 16, bottom: 32, child: animatedChild),
+      builder:
+          (context) => Positioned(
+            left: 16,
+            right: 16,
+            bottom: bottomMargin,
+            child: Dismissible(
+              key: UniqueKey(),
+              onDismissed: (direction) => overlayEntry.remove(),
+              child: animatedChild,
+            ),
+          ),
     );
 
     Overlay.of(context).insert(overlayEntry);
@@ -76,10 +87,16 @@ class Toast extends InheritedWidget {
   }
 
   /// Shows a success toast with predefined styling
-  static OverlayEntry showSuccess(BuildContext context, {required String message, Duration? duration}) => show(
+  static OverlayEntry showSuccess(
+    BuildContext context, {
+    required String message,
+    Duration? duration,
+    double bottomMargin = 32,
+  }) => show(
     context: context,
     duration: duration ?? const Duration(seconds: 3),
     animationType: ToastAnimationType.slideUp,
+    bottomMargin: bottomMargin, // Pass the parameter
     child: Card(
       color: ColorScheme.of(context).primary,
       child: Padding(
@@ -93,10 +110,16 @@ class Toast extends InheritedWidget {
   );
 
   /// Shows an error toast with predefined styling
-  static OverlayEntry showError(BuildContext context, {required String message, Duration? duration}) => show(
+  static OverlayEntry showError(
+    BuildContext context, {
+    required String message,
+    Duration? duration,
+    double bottomMargin = 32,
+  }) => show(
     context: context,
     duration: duration ?? const Duration(seconds: 3),
     animationType: ToastAnimationType.slideUp,
+    bottomMargin: bottomMargin,
     child: Card(
       color: ColorScheme.of(context).error,
       child: Padding(

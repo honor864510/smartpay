@@ -9,6 +9,7 @@ environment:
 
 workspace:
   - package/ui
+  - package/pocketbase_sdk
 
 dependencies:
   flutter:
@@ -40,6 +41,8 @@ dependencies:
   # Packages
   ui:
     path: package/ui
+  pocketbase_sdk:
+    path: package/pocketbase_sdk
 
   # Utils
   web: ^1.1.1
