@@ -162,6 +162,16 @@ class GeneratedLocalization {
       args: [],
     );
   }
+
+  /// `Пожалуйста, введите email правильно`
+  String get enterEmailCorrectly {
+    return Intl.message(
+      'Пожалуйста, введите email правильно',
+      name: 'enterEmailCorrectly',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate

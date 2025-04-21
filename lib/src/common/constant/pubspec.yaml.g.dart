@@ -126,12 +126,12 @@ sealed class Pubspec {
   static final DateTime timestamp = DateTime.utc(
     2025,
     4,
-    15,
-    12,
-    44,
-    55,
-    967,
-    859,
+    21,
+    6,
+    47,
+    48,
+    272,
+    63,
   );
 
   /// Name
@@ -419,6 +419,8 @@ sealed class Pubspec {
     'intl': r'^0.19.0',
     'turkmen_localization_support': r'^0.0.11',
     'cupertino_icons': r'^1.0.8',
+    'pinput': r'^5.0.0',
+    'mask_text_input_formatter': r'^2.9.0',
     'collection': r'^1.19.1',
     'async': r'^2.12.0',
     'meta': r'^1.16.0',
@@ -428,6 +430,9 @@ sealed class Pubspec {
     'stack_trace': r'^1.12.1',
     'ui': <String, Object>{
       'path': r'package/ui',
+    },
+    'pocketbase_sdk': <String, Object>{
+      'path': r'package/pocketbase_sdk',
     },
     'web': r'^1.1.1',
     'path': r'^1.9.1',
@@ -503,13 +508,19 @@ sealed class Pubspec {
     'dependency_overrides': dependencyOverrides,
     'workspace': <Object>[
       r'package/ui',
+      r'package/pocketbase_sdk',
     ],
     'flutter': <String, Object>{
       'uses-material-design': true,
       'generate': true,
+      'assets': <Object>[
+        r'assets/icons/',
+        r'assets/images/',
+        r'.env',
+      ],
     },
     'flutter_gen': <String, Object>{
-      'output': r'lib/src/core/constant/generated',
+      'output': r'lib/src/common/constant/generated',
       'line_length': 120,
     },
     'flutter_intl': <String, Object>{

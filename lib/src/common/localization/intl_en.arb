@@ -15,5 +15,7 @@
   "cardHolderName": "Cardholder name/surname",
   "expiryDate": "Expiry date",
   "fillInAllData": "Please fill all fields",
-  "noCards": "You haven't yet added any card"
+  "noCards": "You haven't yet added any card",
+  "@ ######## Sign in ########": {},
+  "enterEmailCorrectly": "Please enter email correctly"
 }

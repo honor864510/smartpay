@@ -31,6 +31,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Имя/Фамилия на карте",
     ),
     "cardNumber": MessageLookupByLibrary.simpleMessage("Номер карты"),
+    "enterEmailCorrectly": MessageLookupByLibrary.simpleMessage(
+      "Пожалуйста, введите email правильно",
+    ),
     "expiryDate": MessageLookupByLibrary.simpleMessage("Срок действия"),
     "fillInAllData": MessageLookupByLibrary.simpleMessage(
       "Пожалуйста заполните все данные",

@@ -31,6 +31,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Kartyň ýüzündäki ady/familiýasy",
     ),
     "cardNumber": MessageLookupByLibrary.simpleMessage("Kartyň belgisi"),
+    "enterEmailCorrectly": MessageLookupByLibrary.simpleMessage(
+      "Elektron poçtaňyzy dogry giriziň",
+    ),
     "expiryDate": MessageLookupByLibrary.simpleMessage("Kartyň möhleti"),
     "fillInAllData": MessageLookupByLibrary.simpleMessage(
       "Ähli maglumatlary giriziň",

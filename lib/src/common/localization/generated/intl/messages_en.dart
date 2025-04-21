@@ -31,6 +31,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Cardholder name/surname",
     ),
     "cardNumber": MessageLookupByLibrary.simpleMessage("Card number"),
+    "enterEmailCorrectly": MessageLookupByLibrary.simpleMessage(
+      "Please enter email correctly",
+    ),
     "expiryDate": MessageLookupByLibrary.simpleMessage("Expiry date"),
     "fillInAllData": MessageLookupByLibrary.simpleMessage(
       "Please fill all fields",

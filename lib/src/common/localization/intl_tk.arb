@@ -15,5 +15,7 @@
   "cardHolderName": "Kartyň ýüzündäki ady/familiýasy",
   "expiryDate": "Kartyň möhleti",
   "fillInAllData": "Ähli maglumatlary giriziň",
-  "noCards": "Siz entäk bank kartyňyzy girizmediňiz"
+  "noCards": "Siz entäk bank kartyňyzy girizmediňiz",
+  "@ ######## Sign in ########": {},
+  "enterEmailCorrectly": "Elektron poçtaňyzy dogry giriziň"
 }

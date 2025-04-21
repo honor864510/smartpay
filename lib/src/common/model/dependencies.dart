@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smartpay/src/common/model/app_metadata.dart';
+import 'package:smartpay/src/feature/authentication/controller/authentication_controller.dart';
 import 'package:smartpay/src/feature/bank_card/controller/bank_card_controller.dart';
 import 'package:smartpay/src/feature/bank_card/controller/bank_list_controller.dart';
 import 'package:smartpay/src/feature/bank_card/repository/bank_card_repository.dart';
@@ -43,6 +44,9 @@ class Dependencies {
   late final MockBankRepository bankRepository;
 
   /// Controllers
+
+  /// Authentication controller
+  late final AuthenticationController authenticationController;
 
   /// Bank card controller
   late final BankCardController bankCardController;
