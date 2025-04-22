@@ -19,4 +19,12 @@ final class SignInData {
 
   /// Partner id
   final String? partnerId;
+
+  SignInData copyWith({String? email, String? otp, String? otpId, String? userType, String? partnerId}) => SignInData(
+    email ?? this.email,
+    otp: otp ?? this.otp,
+    otpId: otpId ?? this.otpId,
+    userType: userType ?? this.userType,
+    partnerId: partnerId ?? this.partnerId,
+  );
 }

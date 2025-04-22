@@ -22,28 +22,59 @@ final class AuthenticationController extends StateController<AuthenticationState
   final IAuthenticationRepository _repository;
   StreamSubscription<AuthenticationState>? _userSubscription;
 
+  /// Restore the session from the cache.
+  void restore() => handle(
+    () async {
+      setState(AuthenticationState.processing(user: state.user, message: 'Restoring session...'));
+      final user = await _repository.restore();
+      setState(AuthenticationState.idle(user: user ?? const User.unauthenticated()));
+    },
+    error: (error, _) async {
+      setState(
+        AuthenticationState.idle(
+          user: state.user,
+          // ErrorUtil.formatMessage(error)
+          error: kDebugMode ? 'Restore Error: $error' : 'Restore Error',
+        ),
+      );
+    },
+  );
+
   /// Sign in with the given [data].
   void signIn(SignInData data) => handle(
     () async {
       if (state.user.isAuthenticated) {
-        AuthenticationState.processing(user: state.user, message: 'Logging out...');
+        AuthenticationState.processing(
+          user: state.user,
+          message: 'Logging out...',
+          otpId: state.otpId,
+          requestOtpResult: state.requestOtpResult,
+        );
         await _repository.signOut().onError((_, __) {
           /* Ignore */
         });
-        const AuthenticationState.processing(user: User.unauthenticated(), message: 'Successfully logged out.');
+        AuthenticationState.processing(
+          user: const User.unauthenticated(),
+          otpId: state.otpId,
+          message: 'Successfully logged out.',
+          requestOtpResult: state.requestOtpResult,
+        );
       }
 
       setState(
         AuthenticationState.processing(
           user: state.user,
           message: 'Confirm otp in progress...',
+          otpId: state.otpId,
           requestOtpResult: state.requestOtpResult,
         ),
       );
 
-      final user = await _repository.signIn(data);
+      final user = await _repository.signIn(data.copyWith(otpId: state.otpId));
 
-      setState(AuthenticationState.idle(user: user, message: 'Successfully logged in.', requestOtpResult: null));
+      setState(
+        AuthenticationState.idle(user: user, message: 'Successfully logged in.', otpId: null, requestOtpResult: null),
+      );
     },
     error: (error, _) async {
       setState(
@@ -51,6 +82,7 @@ final class AuthenticationController extends StateController<AuthenticationState
           user: state.user,
           // ErrorUtil.formatMessage(error)
           error: kDebugMode ? 'Sign In Error: $error' : 'Sign In Error',
+          otpId: state.otpId,
           requestOtpResult: state.requestOtpResult,
         ),
       );

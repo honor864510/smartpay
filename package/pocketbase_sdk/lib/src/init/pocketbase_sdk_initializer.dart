@@ -21,8 +21,6 @@ final class PocketbaseSdkInitializer {
 
     final pb = PocketBase(serverUrl, authStore: asyncAuthStore, lang: lang);
 
-    pb.collection('users').authRefresh().ignore();
-
     return pb;
   }
 }

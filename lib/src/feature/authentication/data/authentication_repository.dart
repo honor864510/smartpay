@@ -46,6 +46,7 @@ abstract interface class IAuthenticationRepository {
   Stream<User> userChanges();
   Future<OTPResponse> requestOtp(SignInData data);
   Future<User> signIn(SignInData data);
+  Future<User?> restore();
   Future<void> signOut();
 }
 
@@ -69,6 +70,13 @@ final class AuthenticationRepository implements IAuthenticationRepository {
 
   @override
   Stream<User> userChanges() => _userSdk.onChange().map((event) => event?.toUser() ?? const User.unauthenticated());
+
+  @override
+  Future<User?> restore() async {
+    final user = await _userSdk.restore();
+
+    return user?.toUser();
+  }
 }
 
 extension UserDtoExtensions on UserDto {

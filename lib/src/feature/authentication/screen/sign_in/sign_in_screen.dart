@@ -1,11 +1,8 @@
 import 'package:control/control.dart';
 import 'package:pinput/pinput.dart';
 import 'package:smartpay/src/common/constant/app_constants.dart';
-import 'package:smartpay/src/common/constant/generated/assets.gen.dart';
 import 'package:smartpay/src/common/localization/localization.dart';
 import 'package:smartpay/src/common/model/dependencies.dart';
-import 'package:smartpay/src/common/navigator/app_navigator.dart';
-import 'package:smartpay/src/common/navigator/routes.dart';
 import 'package:smartpay/src/common/util/extension/extension.dart';
 import 'package:smartpay/src/feature/authentication/controller/authentication_controller.dart';
 import 'package:smartpay/src/feature/authentication/controller/authentication_state.dart';
@@ -64,28 +61,6 @@ class _Screen extends StatelessWidget {
             padding: const EdgeInsets.all(AppConstants.padding),
             children: [
               ...[
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    ConstrainedBox(constraints: const BoxConstraints(maxWidth: 240), child: Assets.icons.logo.image()),
-                    IconButton(
-                      onPressed:
-                          () => AppNavigator.change(
-                            context,
-                            (pages) => [
-                              Routes.signIn.page(
-                                arguments: {
-                                  'isPartner': !ControllerScope.of<SignInScreenController>(context).isPartner,
-                                },
-                              ),
-                            ],
-                          ),
-                      icon: Icon(
-                        ControllerScope.of<SignInScreenController>(context).isPartner ? Icons.lock : Icons.lock_open,
-                      ),
-                    ),
-                  ],
-                ),
                 SizedBox(height: MediaQuery.sizeOf(context).height * 0.16),
                 Text('Авторизация', style: context.textTheme.headlineLarge?.copyWith(fontWeight: FontWeight.bold)),
                 if (state.requestOtpResult?.isSignInStep ?? true) ...[

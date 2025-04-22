@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:pocketbase_sdk/pocketbase_sdk.dart';
 import 'package:smartpay/src/common/model/dependencies.dart';
 import 'package:smartpay/src/feature/authentication/controller/authentication_controller.dart';
 import 'package:smartpay/src/feature/authentication/controller/authentication_state.dart';
@@ -22,9 +23,9 @@ class AuthenticationScope extends StatefulWidget {
   static AuthenticationController controllerOf(BuildContext context) =>
       _InheritedAuthenticationScope.of(context, listen: false);
 
-  /// Sign-In
-  // static void signIn(BuildContext context, SignInData data) =>
-  //     _InheritedAuthenticationScope.of(context, listen: false).submitPhoneNumber(data);
+  // Sign-In
+  static void signIn(BuildContext context, SignInData data) =>
+      _InheritedAuthenticationScope.of(context, listen: false).signIn(data);
 
   /// Sign-Out
   static void signOut(BuildContext context) => _InheritedAuthenticationScope.of(context, listen: false).signOut();

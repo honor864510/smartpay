@@ -14,10 +14,10 @@ final class UserDto {
 
   factory UserDto.fromJson(Map<String, dynamic> json) => UserDto(
     id: json['id'] as String,
-    email: json['email'] as String,
-    password: json['password'] as String,
-    name: json['name'] as String,
-    avatar: json['avatar'] as String,
+    email: json['email'] as String? ?? '',
+    password: json['password'] as String? ?? '',
+    name: json['name'] as String? ?? '',
+    avatar: json['avatar'] as String? ?? '',
     verified: json['verified'] as bool,
   );
 

@@ -1,14 +1,18 @@
 import 'dart:async';
 
 import 'package:control/control.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:l/l.dart';
 import 'package:platform_info/platform_info.dart';
+import 'package:pocketbase_sdk/pocketbase_sdk.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smartpay/src/common/constant/pubspec.yaml.g.dart';
 import 'package:smartpay/src/common/controller/controller_observer.dart';
 import 'package:smartpay/src/common/model/app_metadata.dart';
 import 'package:smartpay/src/common/model/dependencies.dart';
 import 'package:smartpay/src/common/util/screen_util.dart';
+import 'package:smartpay/src/feature/authentication/controller/authentication_controller.dart';
+import 'package:smartpay/src/feature/authentication/data/authentication_repository.dart';
 import 'package:smartpay/src/feature/bank_card/controller/bank_card_controller.dart';
 import 'package:smartpay/src/feature/bank_card/controller/bank_list_controller.dart';
 import 'package:smartpay/src/feature/bank_card/repository/bank_card_repository.dart';
@@ -40,6 +44,9 @@ Future<Dependencies> $initializeDependencies({void Function(int progress, String
 typedef _InitializationStep = FutureOr<void> Function(Dependencies dependencies);
 final Map<String, _InitializationStep> _initializationSteps = <String, _InitializationStep>{
   'Platform pre-initialization': (_) => $platformInitialization(),
+  'Load dotenv': (_) async {
+    await dotenv.load();
+  },
   'Creating app metadata':
       (dependencies) =>
           dependencies.metadata = AppMetadata(
@@ -65,18 +72,34 @@ final Map<String, _InitializationStep> _initializationSteps = <String, _Initiali
   'Get remote config': (_) {},
   'Initialize shared preferences':
       (dependencies) async => dependencies.sharedPreferences = await SharedPreferences.getInstance(),
+  'Init API SDK\'s': (dependencies) async {
+    final pb = await PocketbaseSdkInitializer.init(
+      serverUrl: dotenv.env['POCKETBASE_URL']!,
+      prefs: dependencies.sharedPreferences,
+      lang: 'ru',
+    );
+
+    dependencies
+      ..pocketBase = pb
+      ..userSdk = UserSdk(pb: pb);
+  },
   'Init repository':
       (dependencies) =>
           dependencies
             ..settingsRepository = SettingsRepository(preferences: dependencies.sharedPreferences)
+            ..authenticationRepository = AuthenticationRepository(userSdk: dependencies.userSdk)
             ..bankRepository = MockBankRepository()
             ..bankCardRepository = BankCardRepository(prefs: dependencies.sharedPreferences),
-  'Initialize settings':
-      (dependencies) async =>
-          dependencies.settingsController = SettingsController(
-            repository: dependencies.settingsRepository,
-            initialState: (settings: await dependencies.settingsRepository.read(), idle: true),
-          ),
+  'Initialize settings': (dependencies) async {
+    dependencies.settingsController = SettingsController(
+      repository: dependencies.settingsRepository,
+      initialState: (settings: await dependencies.settingsRepository.read(), idle: true),
+    );
+
+    dependencies.settingsController.addListener(
+      () => dependencies.pocketBase.lang = dependencies.settingsController.state.settings.locale.languageCode,
+    );
+  },
   'Initialize controllers':
       (dependencies) =>
           dependencies
@@ -86,8 +109,10 @@ final Map<String, _InitializationStep> _initializationSteps = <String, _Initiali
   'Shrink database': (_) {},
   'Migrate app from previous version': (_) {},
   'API Client': (_) {},
-  'Prepare authentication controller': (_) {},
-  // 'Restore last user': (dependencies) => dependencies.authenticationController.restore(),
+  'Prepare authentication controller': (dependencies) {
+    dependencies.authenticationController = AuthenticationController(repository: dependencies.authenticationRepository);
+  },
+  'Restore last user': (dependencies) => dependencies.authenticationController.restore(),
   'Initialize localization': (_) {},
   // 'Collect logs': (dependencies) async {
   //   await (dependencies.database.select<LogTbl, LogTblData>(dependencies.database.logTbl)

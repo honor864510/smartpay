@@ -1,7 +1,9 @@
 import 'package:flutter/widgets.dart';
+import 'package:pocketbase_sdk/pocketbase_sdk.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smartpay/src/common/model/app_metadata.dart';
 import 'package:smartpay/src/feature/authentication/controller/authentication_controller.dart';
+import 'package:smartpay/src/feature/authentication/data/authentication_repository.dart';
 import 'package:smartpay/src/feature/bank_card/controller/bank_card_controller.dart';
 import 'package:smartpay/src/feature/bank_card/controller/bank_list_controller.dart';
 import 'package:smartpay/src/feature/bank_card/repository/bank_card_repository.dart';
@@ -32,10 +34,21 @@ class Dependencies {
   /// Shared preferences
   late final SharedPreferences sharedPreferences;
 
+  /// Sdk
+
+  /// Pocketbase
+  late final PocketBase pocketBase;
+
+  /// User sdk
+  late final UserSdk userSdk;
+
   /// Repository
 
   /// Settings repository
   late final SettingsRepository settingsRepository;
+
+  /// Authentication repository
+  late final AuthenticationRepository authenticationRepository;
 
   /// Bank card repository
   late final BankCardRepository bankCardRepository;
