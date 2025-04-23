@@ -8,6 +8,8 @@ import 'package:smartpay/src/feature/bank_card/controller/bank_card_controller.d
 import 'package:smartpay/src/feature/bank_card/controller/bank_list_controller.dart';
 import 'package:smartpay/src/feature/bank_card/repository/bank_card_repository.dart';
 import 'package:smartpay/src/feature/bank_card/repository/bank_repository.dart';
+import 'package:smartpay/src/feature/bank_transaction/repository/bank_transaction_local_data_source.dart';
+import 'package:smartpay/src/feature/bank_transaction/repository/bank_transaction_repository.dart';
 import 'package:smartpay/src/feature/settings/controller/settings_controller.dart';
 import 'package:smartpay/src/feature/settings/repository/settings_repository.dart';
 
@@ -34,6 +36,11 @@ class Dependencies {
   /// Shared preferences
   late final SharedPreferences sharedPreferences;
 
+  /// Local data source
+
+  /// Bank transaction local data source
+  late final IBankTransactionLocalDataSource bankTransactionLocalDataSource;
+
   /// Sdk
 
   /// Pocketbase
@@ -41,6 +48,9 @@ class Dependencies {
 
   /// User sdk
   late final UserSdk userSdk;
+
+  /// P2PTransaction sdk
+  late final P2pTransactionSdk p2pTransactionSdk;
 
   /// Repository
 
@@ -55,6 +65,9 @@ class Dependencies {
 
   /// Banks List repository
   late final MockBankRepository bankRepository;
+
+  /// Bank transaction repository
+  late final BankTransactionRepository bankTransactionRepository;
 
   /// Controllers
 

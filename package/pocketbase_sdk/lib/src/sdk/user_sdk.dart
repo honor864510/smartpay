@@ -8,19 +8,19 @@ final class UserSdk {
   final PocketBase pb;
 
   Future<UserDto?> restore() async {
-    final response = await pb.collection('users').authRefresh();
+    final response = await pb.collection(UserDto.collectionName).authRefresh();
 
     return UserDto.fromJson(response.record.data);
   }
 
   Future<OTPResponse> requestOtp(SignInData signInData) async {
-    final response = await pb.collection('users').requestOTP(signInData.email);
+    final response = await pb.collection(UserDto.collectionName).requestOTP(signInData.email);
 
     return response;
   }
 
   Future<UserDto> signIn(SignInData signInData) async {
-    final response = await pb.collection('users').authWithOTP(signInData.otpId!, signInData.otp!);
+    final response = await pb.collection(UserDto.collectionName).authWithOTP(signInData.otpId!, signInData.otp!);
 
     return UserDto.fromJson(response.record.data);
   }

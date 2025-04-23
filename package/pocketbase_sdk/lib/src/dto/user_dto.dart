@@ -29,6 +29,8 @@ final class UserDto {
   final String type;
   final bool verified;
 
+  static const String collectionName = 'users';
+
   Map<String, dynamic> toJson() => <String, dynamic>{
     'id': id,
     'email': email,

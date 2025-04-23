@@ -17,6 +17,8 @@ import 'package:smartpay/src/feature/bank_card/controller/bank_card_controller.d
 import 'package:smartpay/src/feature/bank_card/controller/bank_list_controller.dart';
 import 'package:smartpay/src/feature/bank_card/repository/bank_card_repository.dart';
 import 'package:smartpay/src/feature/bank_card/repository/bank_repository.dart';
+import 'package:smartpay/src/feature/bank_transaction/repository/bank_transaction_local_data_source.dart';
+import 'package:smartpay/src/feature/bank_transaction/repository/bank_transaction_repository.dart';
 import 'package:smartpay/src/feature/initialization/data/platform/platform_initialization.dart';
 import 'package:smartpay/src/feature/settings/controller/settings_controller.dart';
 import 'package:smartpay/src/feature/settings/repository/settings_repository.dart';
@@ -72,6 +74,11 @@ final Map<String, _InitializationStep> _initializationSteps = <String, _Initiali
   'Get remote config': (_) {},
   'Initialize shared preferences':
       (dependencies) async => dependencies.sharedPreferences = await SharedPreferences.getInstance(),
+  'Initialize local data source': (dependencies) {
+    dependencies.bankTransactionLocalDataSource = BankTransactionLocalDataSource(
+      preferences: dependencies.sharedPreferences,
+    );
+  },
   'Init API SDK\'s': (dependencies) async {
     final pb = await PocketbaseSdkInitializer.init(
       serverUrl: dotenv.env['POCKETBASE_URL']!,
@@ -81,7 +88,8 @@ final Map<String, _InitializationStep> _initializationSteps = <String, _Initiali
 
     dependencies
       ..pocketBase = pb
-      ..userSdk = UserSdk(pb: pb);
+      ..userSdk = UserSdk(pb: pb)
+      ..p2pTransactionSdk = P2pTransactionSdk(pb: pb);
   },
   'Init repository':
       (dependencies) =>
@@ -89,7 +97,11 @@ final Map<String, _InitializationStep> _initializationSteps = <String, _Initiali
             ..settingsRepository = SettingsRepository(preferences: dependencies.sharedPreferences)
             ..authenticationRepository = AuthenticationRepository(userSdk: dependencies.userSdk)
             ..bankRepository = MockBankRepository()
-            ..bankCardRepository = BankCardRepository(prefs: dependencies.sharedPreferences),
+            ..bankCardRepository = BankCardRepository(prefs: dependencies.sharedPreferences)
+            ..bankTransactionRepository = BankTransactionRepository(
+              localDataSource: dependencies.bankTransactionLocalDataSource,
+              p2pTransactionSdk: dependencies.p2pTransactionSdk,
+            ),
   'Initialize settings': (dependencies) async {
     dependencies.settingsController = SettingsController(
       repository: dependencies.settingsRepository,
